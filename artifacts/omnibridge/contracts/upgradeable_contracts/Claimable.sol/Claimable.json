@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "Claimable",
+  "sourceName": "omnibridge/contracts/upgradeable_contracts/Claimable.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220478cc4355ea0e0e8ef691ae8f90cb9ca4638ac36d033e9de02bf24f4e7b664fe64736f6c63430007050033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220478cc4355ea0e0e8ef691ae8f90cb9ca4638ac36d033e9de02bf24f4e7b664fe64736f6c63430007050033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

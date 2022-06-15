@@ -1,0 +1,371 @@
+{
+  "id": "5915c757341c85b84527e6d5e5722242",
+  "_format": "hh-sol-build-info-1",
+  "solcVersion": "0.6.2",
+  "solcLongVersion": "0.6.2+commit.bacdbe57",
+  "input": {
+    "language": "Solidity",
+    "sources": {
+      "contracts/libraries/SingletonFactory.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n\n/**\n *Submitted for verification at Etherscan.io on 2020-03-30\n */\n\npragma solidity 0.6.2;\n\n/**\n * @title Singleton Factory (EIP-2470)\n * @notice Exposes CREATE2 (EIP-1014) to deploy bytecode on deterministic addresses based on initialization code and salt.\n * @author Ricardo Guilherme Schmidt (Status Research & Development GmbH)\n */\ncontract SingletonFactory {\n  /**\n   * @notice Deploys `_initCode` using `_salt` for defining the deterministic address.\n   * @param _initCode Initialization code.\n   * @param _salt Arbitrary value to modify resulting address.\n   * @return createdContract Created contract address.\n   */\n  function deploy(bytes memory _initCode, bytes32 _salt) public returns (address payable createdContract) {\n    assembly {\n      createdContract := create2(0, add(_initCode, 0x20), mload(_initCode), _salt)\n    }\n  }\n}\n// IV is a value changed to generate the vanity address.\n// IV: 6583047\n"
+      }
+    },
+    "settings": {
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata",
+            "storageLayout"
+          ],
+          "": [
+            "ast"
+          ]
+        }
+      }
+    }
+  },
+  "output": {
+    "contracts": {
+      "contracts/libraries/SingletonFactory.sol": {
+        "SingletonFactory": {
+          "abi": [
+            {
+              "inputs": [
+                {
+                  "internalType": "bytes",
+                  "name": "_initCode",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "_salt",
+                  "type": "bytes32"
+                }
+              ],
+              "name": "deploy",
+              "outputs": [
+                {
+                  "internalType": "address payable",
+                  "name": "createdContract",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            }
+          ],
+          "evm": {
+            "bytecode": {
+              "linkReferences": {},
+              "object": "608060405234801561001057600080fd5b50610134806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80634af63f0214602d575b600080fd5b60cf60048036036040811015604157600080fd5b810190602081018135640100000000811115605b57600080fd5b820183602082011115606c57600080fd5b80359060200191846001830284011164010000000083111715608d57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550509135925060eb915050565b604080516001600160a01b039092168252519081900360200190f35b6000818351602085016000f5939250505056fea264697066735822122042e8afe74a68b0bfa6e67f0290f30b3d2cc3ab530a1a746dab6ebd8536495bc364736f6c63430006020033",
+              "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0x134 DUP1 PUSH2 0x20 PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH1 0x28 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x4AF63F02 EQ PUSH1 0x2D JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0xCF PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x40 DUP2 LT ISZERO PUSH1 0x41 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 ADD SWAP1 PUSH1 0x20 DUP2 ADD DUP2 CALLDATALOAD PUSH5 0x100000000 DUP2 GT ISZERO PUSH1 0x5B JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP3 ADD DUP4 PUSH1 0x20 DUP3 ADD GT ISZERO PUSH1 0x6C JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP1 CALLDATALOAD SWAP1 PUSH1 0x20 ADD SWAP2 DUP5 PUSH1 0x1 DUP4 MUL DUP5 ADD GT PUSH5 0x100000000 DUP4 GT OR ISZERO PUSH1 0x8D JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST SWAP2 SWAP1 DUP1 DUP1 PUSH1 0x1F ADD PUSH1 0x20 DUP1 SWAP2 DIV MUL PUSH1 0x20 ADD PUSH1 0x40 MLOAD SWAP1 DUP2 ADD PUSH1 0x40 MSTORE DUP1 SWAP4 SWAP3 SWAP2 SWAP1 DUP2 DUP2 MSTORE PUSH1 0x20 ADD DUP4 DUP4 DUP1 DUP3 DUP5 CALLDATACOPY PUSH1 0x0 SWAP3 ADD SWAP2 SWAP1 SWAP2 MSTORE POP SWAP3 SWAP6 POP POP SWAP2 CALLDATALOAD SWAP3 POP PUSH1 0xEB SWAP2 POP POP JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP3 AND DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH1 0x0 DUP2 DUP4 MLOAD PUSH1 0x20 DUP6 ADD PUSH1 0x0 CREATE2 SWAP4 SWAP3 POP POP POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 TIMESTAMP 0xE8 0xAF 0xE7 0x4A PUSH9 0xB0BFA6E67F0290F30B RETURNDATASIZE 0x2C 0xC3 0xAB MSTORE8 EXP BYTE PUSH21 0x6DAB6EBD8536495BC364736F6C6343000602003300 ",
+              "sourceMap": "369:505:0:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;369:505:0;;;;;;;"
+            },
+            "deployedBytecode": {
+              "linkReferences": {},
+              "object": "6080604052348015600f57600080fd5b506004361060285760003560e01c80634af63f0214602d575b600080fd5b60cf60048036036040811015604157600080fd5b810190602081018135640100000000811115605b57600080fd5b820183602082011115606c57600080fd5b80359060200191846001830284011164010000000083111715608d57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550509135925060eb915050565b604080516001600160a01b039092168252519081900360200190f35b6000818351602085016000f5939250505056fea264697066735822122042e8afe74a68b0bfa6e67f0290f30b3d2cc3ab530a1a746dab6ebd8536495bc364736f6c63430006020033",
+              "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH1 0x28 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x4AF63F02 EQ PUSH1 0x2D JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0xCF PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x40 DUP2 LT ISZERO PUSH1 0x41 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 ADD SWAP1 PUSH1 0x20 DUP2 ADD DUP2 CALLDATALOAD PUSH5 0x100000000 DUP2 GT ISZERO PUSH1 0x5B JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP3 ADD DUP4 PUSH1 0x20 DUP3 ADD GT ISZERO PUSH1 0x6C JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP1 CALLDATALOAD SWAP1 PUSH1 0x20 ADD SWAP2 DUP5 PUSH1 0x1 DUP4 MUL DUP5 ADD GT PUSH5 0x100000000 DUP4 GT OR ISZERO PUSH1 0x8D JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST SWAP2 SWAP1 DUP1 DUP1 PUSH1 0x1F ADD PUSH1 0x20 DUP1 SWAP2 DIV MUL PUSH1 0x20 ADD PUSH1 0x40 MLOAD SWAP1 DUP2 ADD PUSH1 0x40 MSTORE DUP1 SWAP4 SWAP3 SWAP2 SWAP1 DUP2 DUP2 MSTORE PUSH1 0x20 ADD DUP4 DUP4 DUP1 DUP3 DUP5 CALLDATACOPY PUSH1 0x0 SWAP3 ADD SWAP2 SWAP1 SWAP2 MSTORE POP SWAP3 SWAP6 POP POP SWAP2 CALLDATALOAD SWAP3 POP PUSH1 0xEB SWAP2 POP POP JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP3 AND DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH1 0x0 DUP2 DUP4 MLOAD PUSH1 0x20 DUP6 ADD PUSH1 0x0 CREATE2 SWAP4 SWAP3 POP POP POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 TIMESTAMP 0xE8 0xAF 0xE7 0x4A PUSH9 0xB0BFA6E67F0290F30B RETURNDATASIZE 0x2C 0xC3 0xAB MSTORE8 EXP BYTE PUSH21 0x6DAB6EBD8536495BC364736F6C6343000602003300 ",
+              "sourceMap": "369:505:0:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;369:505:0;;;;;;;;;;;;;;;;;;;659:213;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;659:213:0;;;;;;;;21:11:-1;5:28;;2:2;;;46:1;43;36:12;2:2;659:213:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;659:213:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;659:213:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;81:16;;74:27;;;;-1:-1;659:213:0;;-1:-1:-1;;659:213:0;;;-1:-1:-1;659:213:0;;-1:-1:-1;;659:213:0:i;:::-;;;;-1:-1:-1;;;;;659:213:0;;;;;;;;;;;;;;;730:31;856:5;844:9;838:16;831:4;820:9;816:20;813:1;805:57;786:76;778:90;-1:-1:-1;;;778:90:0:o"
+            },
+            "methodIdentifiers": {
+              "deploy(bytes,bytes32)": "4af63f02"
+            }
+          },
+          "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_initCode\",\"type\":\"bytes\"},{\"internalType\":\"bytes32\",\"name\":\"_salt\",\"type\":\"bytes32\"}],\"name\":\"deploy\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"createdContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Ricardo Guilherme Schmidt (Status Research & Development GmbH)\",\"methods\":{\"deploy(bytes,bytes32)\":{\"params\":{\"_initCode\":\"Initialization code.\",\"_salt\":\"Arbitrary value to modify resulting address.\"},\"returns\":{\"createdContract\":\"Created contract address.\"}}},\"title\":\"Singleton Factory (EIP-2470)\"},\"userdoc\":{\"methods\":{\"deploy(bytes,bytes32)\":{\"notice\":\"Deploys `_initCode` using `_salt` for defining the deterministic address.\"}},\"notice\":\"Exposes CREATE2 (EIP-1014) to deploy bytecode on deterministic addresses based on initialization code and salt.\"}},\"settings\":{\"compilationTarget\":{\"contracts/libraries/SingletonFactory.sol\":\"SingletonFactory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/libraries/SingletonFactory.sol\":{\"keccak256\":\"0xadda8b25cc9d924143e3fa2316d71513b06aadf08db479099649a36de457dc97\",\"urls\":[\"bzz-raw://5538958b5881be8c09be3f30b28bf509e62ddc03b2ad3c7296d53102c395798f\",\"dweb:/ipfs/QmTtYJWQw5CSEfLJ76V8T9GpamP6QXdcECk2pa8vXgGw1h\"]}},\"version\":1}",
+          "storageLayout": {
+            "storage": [],
+            "types": null
+          }
+        }
+      }
+    },
+    "sources": {
+      "contracts/libraries/SingletonFactory.sol": {
+        "ast": {
+          "absolutePath": "contracts/libraries/SingletonFactory.sol",
+          "exportedSymbols": {
+            "SingletonFactory": [
+              13
+            ]
+          },
+          "id": 14,
+          "nodeType": "SourceUnit",
+          "nodes": [
+            {
+              "id": 1,
+              "literals": [
+                "solidity",
+                "0.6",
+                ".2"
+              ],
+              "nodeType": "PragmaDirective",
+              "src": "101:22:0"
+            },
+            {
+              "abstract": false,
+              "baseContracts": [],
+              "contractDependencies": [],
+              "contractKind": "contract",
+              "documentation": "@title Singleton Factory (EIP-2470)\n@notice Exposes CREATE2 (EIP-1014) to deploy bytecode on deterministic addresses based on initialization code and salt.\n@author Ricardo Guilherme Schmidt (Status Research & Development GmbH)",
+              "fullyImplemented": true,
+              "id": 13,
+              "linearizedBaseContracts": [
+                13
+              ],
+              "name": "SingletonFactory",
+              "nodeType": "ContractDefinition",
+              "nodes": [
+                {
+                  "body": {
+                    "id": 11,
+                    "nodeType": "Block",
+                    "src": "763:109:0",
+                    "statements": [
+                      {
+                        "AST": {
+                          "nodeType": "YulBlock",
+                          "src": "778:90:0",
+                          "statements": [
+                            {
+                              "nodeType": "YulAssignment",
+                              "src": "786:76:0",
+                              "value": {
+                                "arguments": [
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "813:1:0",
+                                    "type": "",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "arguments": [
+                                      {
+                                        "name": "_initCode",
+                                        "nodeType": "YulIdentifier",
+                                        "src": "820:9:0"
+                                      },
+                                      {
+                                        "kind": "number",
+                                        "nodeType": "YulLiteral",
+                                        "src": "831:4:0",
+                                        "type": "",
+                                        "value": "0x20"
+                                      }
+                                    ],
+                                    "functionName": {
+                                      "name": "add",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "816:3:0"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "816:20:0"
+                                  },
+                                  {
+                                    "arguments": [
+                                      {
+                                        "name": "_initCode",
+                                        "nodeType": "YulIdentifier",
+                                        "src": "844:9:0"
+                                      }
+                                    ],
+                                    "functionName": {
+                                      "name": "mload",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "838:5:0"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "838:16:0"
+                                  },
+                                  {
+                                    "name": "_salt",
+                                    "nodeType": "YulIdentifier",
+                                    "src": "856:5:0"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "create2",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "805:7:0"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "805:57:0"
+                              },
+                              "variableNames": [
+                                {
+                                  "name": "createdContract",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "786:15:0"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "evmVersion": "istanbul",
+                        "externalReferences": [
+                          {
+                            "declaration": 3,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "820:9:0",
+                            "valueSize": 1
+                          },
+                          {
+                            "declaration": 3,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "844:9:0",
+                            "valueSize": 1
+                          },
+                          {
+                            "declaration": 5,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "856:5:0",
+                            "valueSize": 1
+                          },
+                          {
+                            "declaration": 8,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "786:15:0",
+                            "valueSize": 1
+                          }
+                        ],
+                        "id": 10,
+                        "nodeType": "InlineAssembly",
+                        "src": "769:99:0"
+                      }
+                    ]
+                  },
+                  "documentation": "@notice Deploys `_initCode` using `_salt` for defining the deterministic address.\n@param _initCode Initialization code.\n@param _salt Arbitrary value to modify resulting address.\n@return createdContract Created contract address.",
+                  "functionSelector": "4af63f02",
+                  "id": 12,
+                  "implemented": true,
+                  "kind": "function",
+                  "modifiers": [],
+                  "name": "deploy",
+                  "nodeType": "FunctionDefinition",
+                  "overrides": null,
+                  "parameters": {
+                    "id": 6,
+                    "nodeType": "ParameterList",
+                    "parameters": [
+                      {
+                        "constant": false,
+                        "id": 3,
+                        "name": "_initCode",
+                        "nodeType": "VariableDeclaration",
+                        "overrides": null,
+                        "scope": 12,
+                        "src": "675:22:0",
+                        "stateVariable": false,
+                        "storageLocation": "memory",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes"
+                        },
+                        "typeName": {
+                          "id": 2,
+                          "name": "bytes",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "675:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes_storage_ptr",
+                            "typeString": "bytes"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      },
+                      {
+                        "constant": false,
+                        "id": 5,
+                        "name": "_salt",
+                        "nodeType": "VariableDeclaration",
+                        "overrides": null,
+                        "scope": 12,
+                        "src": "699:13:0",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        "typeName": {
+                          "id": 4,
+                          "name": "bytes32",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "699:7:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "src": "674:39:0"
+                  },
+                  "returnParameters": {
+                    "id": 9,
+                    "nodeType": "ParameterList",
+                    "parameters": [
+                      {
+                        "constant": false,
+                        "id": 8,
+                        "name": "createdContract",
+                        "nodeType": "VariableDeclaration",
+                        "overrides": null,
+                        "scope": 12,
+                        "src": "730:31:0",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        "typeName": {
+                          "id": 7,
+                          "name": "address",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "730:15:0",
+                          "stateMutability": "payable",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "src": "729:33:0"
+                  },
+                  "scope": 13,
+                  "src": "659:213:0",
+                  "stateMutability": "nonpayable",
+                  "virtual": false,
+                  "visibility": "public"
+                }
+              ],
+              "scope": 14,
+              "src": "369:505:0"
+            }
+          ],
+          "src": "101:846:0"
+        },
+        "id": 0
+      }
+    }
+  }
+}

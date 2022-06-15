@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "Claimable",
+  "sourceName": "contracts/Mocks/ERC677.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820994ab6aa0c7c341dc92ca46e9c7f8ed3fbbe9ceb249cba35deb15fab4369d5a20029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820994ab6aa0c7c341dc92ca46e9c7f8ed3fbbe9ceb249cba35deb15fab4369d5a20029",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

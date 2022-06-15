@@ -1,0 +1,22 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "Sacrifice",
+  "sourceName": "omnibridge/contracts/upgradeable_contracts/Sacrifice.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "_recipient",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x60806040526040516032380380603283398181016040526020811015602357600080fd5b50516001600160a01b038116fffe",
+  "deployedBytecode": "0x6080604052600080fdfea264697066735822122067ac86eb5ff2a0597fbad17265a292651ef715a26a8a75ac07e344475c7048e864736f6c63430007050033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
